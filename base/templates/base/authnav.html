@@ -1,0 +1,23 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="nav-cont">
+        <div class="logo"><a href="{% url 'base:home' %}">AntonyELearn</a></div>
+        <div class="prof-cont">
+            {% if usert == 'L' %}
+                <div class="prof">
+                    <h4>{{user.first_name}}</h4>
+                    <p>Lecturer</p>
+                </div>
+                <h5><a href="{% url 'accounts:logout' %}">logout</a></h5>
+            {% elif usert == 'S' %}
+                <div class="prof">
+                    <h4>{{user.first_name}}</h4>
+                    <p>Student</p>
+                </div>
+                <h5><a href="{% url 'accounts:logout' %}">logout</a></h5>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{course}}{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% include 'base/authnav.html' %}
+    {% else %}
+        {% include 'base/nav.html' %}
+    {% endif %}
+    <div class="course-cont-u">
+        <div class="course-title">
+            <h1><a href="{% url 'base:course' course.id %}">{{course}}</a></h1>
+            <h4>{{year}}</h4>
+        </div>
+        <div class="course-units">
+            <H1 style="color: blueviolet;">Course Units</H1>
+            {% for unit in yunits %}
+                {% if unit in unic %}
+                    <a href="{% url 'base:unit' unit.id %}">
+                        <div class="course">
+                        <h4>{{unit}}</h4>
+                    </div></a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

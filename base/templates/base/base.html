@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+        body{
+            background-color: rgb(208, 234, 234);
+        }
+        /* nav */
+        .nav-cont{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .prof-cont{
+            width: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .prof-cont .prof{
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-align: center;
+            border: 1px solid red;
+            padding: 0 40px;
+            border-radius: 5px;
+        }
+        .prof-cont h5{
+            border: 1px solid black;
+            padding: 4px;
+            border-radius: 20px;
+        }
+        .navlink{
+            width: 10%;
+            display: flex;
+            justify-content: space-between;
+            padding-right: 20px;
+        }
+        .logo{
+            color: brown;
+            border: 4px solid white;
+            width: fit-content;
+            padding: 10px;
+        }
+        /*reutilized*/
+        .title{
+            width: fit-content;
+            margin: auto;
+            color: blueviolet;
+            font-size: 24px;
+        }
+        a{
+            color: blue;
+            text-decoration: none;
+        }
+        button{
+            width: fit-content;
+            padding: 5px 20px;
+            margin:10px auto;
+            background-color: rgb(232, 10, 10);
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        /* body */
+        .course-cont, .course-cont-c{
+            margin: 5%;
+            width: fit-content;
+            border: 2px solid black;
+            margin: auto;
+            padding: 10px;
+        }
+        .course-title{
+            margin-top: 40px;
+            width: max-content;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid black;
+            margin-bottom: 40px;
+        }
+        .course-units{
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            width: 90%;
+            margin-top: 5%;
+            margin: auto;
+        }
+        .course-units .course{
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px;
+            width: 70%;
+            margin-top: 5%;
+            margin: auto;
+        }
+        /* form styles */
+        form{
+            width: fit-content;
+            padding: 20px;
+            margin: 5% auto;
+            border: 2px solid black;
+            border-radius: 20px;
+        }
+        form .form-cont{
+            display: flex;
+            align-items: center;
+            padding: 10px;
+        }
+        form .form-cont .form-label, .form-filed{
+            margin: 5px;
+        }
+        
+    </style>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <script src="{% static 'index.js' %}"></script>
+</body>
+</html>

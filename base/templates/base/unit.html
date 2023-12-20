@@ -1,0 +1,60 @@
+
+{% extends 'base/base.html' %}
+
+{% block title %}{{unit}}{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% include 'base/authnav.html' %}
+    {% else %}
+        {% include 'base/nav.html' %}
+    {% endif %}
+    <div class="tl-cont" style="margin: 0 20px; display: flex; align-items: center; justify-content: space-between;">
+        <div class="course-title">
+            <h1><a href="{% url 'base:course' course.id %}">{{course}}</a></h1>
+            <h2 style="color: coral; letter-spacing: 2px;">{{unit}}</h2>
+        </div>
+        {% if usert == 'L' %}
+            <h4 style="border: 1px solid red; padding: 5px 10px; border-radius: 5px;"><a href="{% url 'accounts:addtopic' unit.id %}">Add Topic/Cat</a></h4>
+            <h4><a href="{% url 'accounts:addmarks' unit.id %}">Add students Marks</a></h4>
+        {% endif %}
+    </div>
+
+    <div class="cont-pts" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="topics">
+            {% for topic in topics %}
+                <div class="topic-cont" style=" padding: 10px; width: 400px; margin: 10px auto; border: 1px solid black;">
+                    <h1>{{topic}}</h1>
+                    <hp>{{topic.description}}</h1>
+                    <h4>{{topic.file}}</h4>
+                    <h6>Updated {{topic.updated|timesince}} ago</h6>
+                    {% if usert == 'L' %}
+                        <h4><a href="{% url 'accounts:editt' topic.id %}">Edit</a></h4>
+                        <h4><a href="{% url 'accounts:deletet' topic.id %}">Delete</a></h4>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="marks" style="width: 25%; margin: 0 10%;">
+            {% if usert == 'L' %}
+                {% for mark in marks %}
+                    <div class="marks" style="border: 1px solid white;padding: 10px; align-items: center; margin: 20px;">
+                        <h4> Student Name: {{mark.student.first_name}}</h4>
+                        <h4>Student Grade: {{mark.grade}}</h4>
+                        <h4>Student percentage: {{mark.percentage}}%</h4>
+                        <h6>Updated on:{{mark.updated|timesince}}</h6>
+                        <h4><a href="{% url 'accounts:editmarks' mark.id %}">Edit</a></h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="marks" style="border: 1px solid white;padding: 10px; align-items: center; margin: 20px;">
+                <h4>Your Grade: {{studentmks.grade}}</h4>
+                <h4>Your Marks: {{studentmks.percentage}}%</h4>
+                <h6>{{studentmks.updated|timesince}}</h6>
+            </div>
+            
+                    
+        </div>
+    </div>
+
+{% endblock %}

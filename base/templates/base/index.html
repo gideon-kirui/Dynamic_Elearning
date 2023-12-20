@@ -1,0 +1,59 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block title %} {% if school.id %} {{school}} {% else %} Antos {% endif %}{% endblock %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        {% include 'base/authnav.html' %}
+    {% else %}
+        {% include 'base/nav.html' %}
+    {% endif %}
+    <div class="container">
+            {% for course in allcourses%}
+                {% if course == mycourse %}
+                <a href="{% url 'base:course' course.id %}">
+                    <div class="course-cont">
+                        <h4>Hi {{user.first_name}}</h4>
+                        <p>Welcome To:</p>
+                        <h4>{{mycourse}}</h4>
+                        <p>{{mycourse.school}}</p>
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+            {% for course in courses%}
+                {% if course == mycourse %}
+                <a href="{% url 'base:course' course.id %}">
+                    <div class="course-cont">
+                        <h4>Hi {{user.first_name}}</h4>
+                        <p>Welcome To:</p>
+                        <h4>{{mycourse}}</h4>
+                        <p>{{mycourse.school}}</p>
+                    </div>
+                </a>
+                {% endif %}
+            {% endfor %}
+        <div class="nonucont" style="display: flex; width: 90%; margin: 10% auto;">
+            <div class="schools_cont" style="width: 60%;">
+                <h4><a href="{% url 'base:home' %}">All Schools</a></h4>
+                <h4>{{school}}</h4>
+                {% for school in schools %}
+                    <h4><a href="{% url 'base:school' school.id %}">{{school}}</a></h4>
+                {% endfor %}
+            </div>
+            <div class="courses-cont">
+                {% for course in allcourses%}
+                    {% if course != mycourse %}
+                        <h4><a href="{% url 'base:course' course.id %}">{{course}}</a></h4>
+                    {% endif %}
+                {% endfor %}
+                {% for course in courses %}
+                    {% if course != mycourse %}
+                        <h4><a href="{% url 'base:course' course.id %}">{{course}}</a></h4>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
